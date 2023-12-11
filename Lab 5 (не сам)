@@ -1,0 +1,62 @@
+//single
+#include <cassert>
+#include <iostream>
+
+struct Node {
+    int value;
+    Node* next;
+
+    Node(int val) : value(val), next(nullptr) {}
+};
+
+struct LinkedList {
+    Node* head;
+    Node* tail;
+    size_t size;
+
+    LinkedList() : head(nullptr), tail(nullptr), size(0) {}
+};
+
+struct FindNodeResult {
+    Node* found;
+    Node* previous;
+};
+
+
+void testSinglyLinkedList() {
+}
+
+int main() {
+    testSinglyLinkedList();
+    return 0;
+}
+
+//double
+#include <cassert>
+#include <iostream>
+
+struct Node {
+    int value;
+    Node* prev;
+    Node* next;
+
+    Node(int val) : value(val), prev(nullptr), next(nullptr) {}
+};
+
+struct DoublyLinkedList {
+    Node* head;
+    Node* tail;
+    size_t size;
+
+    DoublyLinkedList() : head(nullptr), tail(nullptr), size(0) {}
+};
+
+// Implementation of the DoublyLinkedList functions...
+
+void testDoublyLinkedList() {
+}
+
+
+int main() {
+    return 0;
+}
