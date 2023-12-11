@@ -1,0 +1,42 @@
+#include <iostream>
+#include <chrono>
+#include <cstdlib>
+#include <ctime>
+
+// Функция для выделения буфера и его заполнения случайными числами
+int* createAndFillArray(int size) {
+    int* array = new int[size];
+    for (int i = 0; i < size; ++i) {
+        array[i] = std::rand() % 100; // Заполнение случайными числами от 0 до 99
+    }
+    return array;
+}
+
+// Функция для измерения времени выполнения другой функции
+template <typename Func>
+auto measureExecutionTime(Func func) {
+    auto start = std::chrono::high_resolution_clock::now();
+    func();
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double, std::micro> duration = end - start;
+    return duration;
+}
+
+int main() {
+    // Инициализация генератора случайных чисел
+    std::srand(std::time(nullptr));
+
+    const int size = 10000; // Размер массива
+    int* myArray = createAndFillArray(size);
+
+    // Измерение времени выполнения функции createAndFillArray
+    auto duration = measureExecutionTime([&] {
+        createAndFillArray(size);
+    });
+
+    std::cout << "Время выполнения: " 
+              << duration.count() << " микросекунд" << std::endl;
+
+    delete[] myArray; // Освобождение памяти
+    return 0;
+}
