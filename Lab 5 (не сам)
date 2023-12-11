@@ -56,6 +56,78 @@ struct DoublyLinkedList {
 void testDoublyLinkedList() {
 }
 
+//queue
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+// Определение структуры узла
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+
+// Определение структуры очереди
+typedef struct Queue {
+    Node* front;
+    Node* rear;
+} Queue;
+
+// Функция для создания нового узла
+Node* newNode(int value) {
+    Node* temp = (Node*)malloc(sizeof(Node));
+    temp->data = value;
+    temp->next = NULL;
+    return temp;
+}
+
+// Функция для создания очереди
+Queue* createQueue() {
+    Queue* q = (Queue*)malloc(sizeof(Queue));
+    q->front = q->rear = NULL;
+    return q;
+}
+
+// Функция для добавления элемента в очередь
+void enqueue(Queue* queue, int value) {
+    Node* temp = newNode(value);
+    if (queue->rear == NULL) {
+        queue->front = queue->rear = temp;
+        return;
+    }
+    queue->rear->next = temp;
+    queue->rear = temp;
+}
+
+// Функция для удаления элемента из очереди
+int dequeue(Queue* queue) {
+    if (queue->front == NULL)
+        return INT_MIN;
+
+    Node* temp = queue->front;
+    int value = temp->data;
+    queue->front = queue->front->next;
+
+    if (queue->front == NULL)
+        queue->rear = NULL;
+
+    free(temp);
+    return value;
+}
+
+// Функция для проверки, пуста ли очередь
+bool isEmpty(Queue* queue) {
+    return queue->front == NULL;
+}
+
+// Основная функция для тестирования
+int main() {
+    Queue* q = createQueue();
+    enqueue(q, 10);
+    enqueue(q, 20);
+    printf("%d dequeued from queue\n", dequeue(q));
+    printf("%d dequeued from queue\n", dequeue
+
 
 int main() {
     return 0;
