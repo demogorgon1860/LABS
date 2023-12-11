@@ -7,10 +7,7 @@ int main() {
     std::cout << hello(5) << std::endl;
     return 0;
 }
-Файл f.cpp
 
-cpp
-Copy code
 // f.cpp
 int hello(int x) {
     return x + 1;
